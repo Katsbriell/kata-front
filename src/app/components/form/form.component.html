@@ -1,0 +1,42 @@
+<div class="simple-form">
+    <form (ngSubmit)="onRegister()" #formRef="ngForm">
+        <label for="fullname">Nombre completo *</label>
+        <input type="text" id="fullname" name="fullname" [(ngModel)]="userI.fullname" required placeholder="Nombre" />
+
+        <label for="email">Correo electrónico *</label>
+        <input type="email" id="email" name="email" [(ngModel)]="userI.email" required email placeholder="Email" />
+
+        <label for="date">Fecha de ingreso *</label>
+        <input type="date" id="date" name="date" [(ngModel)]="userI.date" required />
+
+        <label>Estado del Onboarding de bienvenida *</label>
+        <select name="generalOnb" [(ngModel)]="userI.generalOnbStatus" required>
+            <option value="false">Pendiente</option>
+            <option value="true">Finalizado</option>
+        </select>
+
+        <label>Estado del Onboarding técnico *</label>
+        <select name="techOnb" [(ngModel)]="userI.techOnbStatus" required>
+            <option value="false">Pendiente</option>
+            <option value="true">Finalizado</option>
+        </select>
+        <label>Fecha del Onboarding técnico</label>
+        <input type="date" name="onbDate" [(ngModel)]="userI.techOnbDate" />
+
+        <label style="font-size: smaller; font-weight: lighter;">* Valores obligatorios</label>
+
+        <button type="submit" [disabled]="formRef.invalid">Enviar</button>
+
+    </form>
+</div>
+
+<div class="modal-container" *ngIf="modalData.modal">
+    <div class="modal">
+        <h3> {{modalData.title}} </h3>
+        <div class="buttons">
+            <button id="button1" (click)="modalNav('/main')"> {{modalData.btnText1}} </button>
+            <button id="button2" (click)="modalNav('/details')"
+                [hidden]="modalData.hide">{{modalData.btnText2}}</button>
+        </div>
+    </div>
+</div>

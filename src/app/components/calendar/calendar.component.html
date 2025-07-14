@@ -1,0 +1,13 @@
+<div class="calendar">
+    <full-calendar [options]="calendarOptions"></full-calendar>
+</div>
+<div class="modal-container" *ngIf="modal">
+    <div class="modal">
+        <h3> {{modalData.title}} </h3>
+        <p> Inicio: {{modalData.startDate}} </p>
+        <p> Final: {{modalData.endDate}} </p>
+        <div class="buttons">
+            <button id="button1" (click)="close()"> Cerrar </button>
+        </div>
+    </div>
+</div>

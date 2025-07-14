@@ -1,0 +1,10 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div *ngIf="component==='dashboard'">
+        <app-dashboard></app-dashboard>
+    </div>
+
+    <div *ngIf="component==='calendar'">
+        <app-calendar></app-calendar>
+    </div>
+</div>

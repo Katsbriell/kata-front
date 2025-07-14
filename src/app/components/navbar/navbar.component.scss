@@ -1,0 +1,17 @@
+.navbar {
+    background-color: #2c3e50;
+    border: 1px solid #2c3e50;
+    border-radius: 4px;
+
+    display: flex;
+    justify-content: right;
+    height: fit-content;
+    padding: 10px 20px;
+    gap: 50px;
+    top: 0;
+
+    a {
+        color: white;
+        font-size: small;
+    }
+}

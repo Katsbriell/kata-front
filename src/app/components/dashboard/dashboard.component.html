@@ -1,0 +1,75 @@
+<div class="dashboard" *ngIf="users.length !== 0 || filter">
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="3" class="changes">
+                    <button *ngIf="changes" id="saveBtn" (click)="updateUsers()">Guardar cambios</button>
+                </th>
+                <th colspan="2" class="filter">
+                    <select [(ngModel)]="gStatusFilter" (change)="apply()">
+                        <option value="">Todos</option>
+                        <option value="true">Completado</option>
+                        <option value="false">No completado</option>
+                    </select>
+                </th>
+                <th colspan="2" class="filter">
+                    <select [(ngModel)]="tStatusFilter" (change)="apply()">
+                        <option value="">Todos</option>
+                        <option value="true">Completado</option>
+                        <option value="false">No completado</option>
+                    </select>
+                </th>
+                <th class="changes" colspan="2">
+                    <button (click)="cleanTable()">Limpiar</button>
+                </th>
+            </tr>
+
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Fecha de Ingreso</th>
+                <th>Estado Onbording Bienvenida</th>
+                <th>Completo</th>
+                <th>Estado Onbording Técnico</th>
+                <th>Completo</th>
+                <th>Fecha Onbording Técnico</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <th>{{user.fullname}}</th>
+                <th>{{user.email}}</th>
+                <th>{{user.date}}</th>
+                <th>{{user.generalOnbStatus}}</th>
+                <th><input type="checkbox" name="gOnb" [(ngModel)]="user.generalOnbStatus"
+                        (ngModelChange)="onCheckboxChange()"></th>
+                <th>{{user.techOnbStatus}}</th>
+                <th><input type="checkbox" name="tOnb" [(ngModel)]="user.techOnbStatus"
+                        (ngModelChange)="onCheckboxChange()"></th>
+                <th>{{user.techOnbDate === 'null'? 'Sin registrar': user.techOnbDate}}</th>
+                <th><button (click)="delete(user.id)">Eliminar</button></th>
+            </tr>
+        </tbody>
+        <tfoot *ngIf="fUsers.length===0 && filter">
+            <tr>
+                <th colspan="9">¡No hay coincidencias!</th>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>
+<div class="no-users" *ngIf="users.length === 0 && !filter">
+    <h1>¡No hay colaboradores registrados!</h1>
+    <button (click)="onRegister()">Registrar colaborador</button>
+</div>
+<div class="modal-container" *ngIf="modal">
+    <div class="modal">
+        <h3> ¿Está seguro que quiere eliminar el colaborador? </h3>
+        <div class="buttons">
+            <button id="button1" (click)="return()"> Cancelar </button>
+            <button id="button2" (click)="confirm()">Confirmar</button>
+        </div>
+    </div>
+</div>
